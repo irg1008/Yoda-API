@@ -1,0 +1,9 @@
+scripts:
+  start:
+    cmd: deno run app.ts
+    watch: true
+    allow:
+      - net
+      - env
+      - read
+    importMap: import_map.json
