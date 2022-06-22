@@ -3,7 +3,7 @@ import { userService } from 'lib/services';
 
 const routes: FastifyPluginAsync = async (app, opts) => {
   app.get('/', async (req, res) => {
-    const users = userService.getall();
+    const users = await userService.getall();
     res.send(users);
   });
 };
