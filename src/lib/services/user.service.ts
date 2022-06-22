@@ -13,8 +13,11 @@ const create = async (createData: CreateUserData) => {
   return db.user.create({ data });
 };
 
+const getall = () => db.user.findMany();
+
 export default {
   get,
   getByEmail,
   create,
+  getall,
 };

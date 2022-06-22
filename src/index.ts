@@ -1,17 +1,13 @@
 import Fastify from 'fastify';
+import { userRoutes } from 'routes';
+import { fastifyOptions } from 'config/fastify';
 
-const app = Fastify({
-  logger: true,
+const app = Fastify(fastifyOptions);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
-app.get('/', async (req, res) => {
-  res.send({ hello: 'world' });
-});
+app.register(userRoutes, { prefix: '/user' });
 
-app.listen({ port: 3000 }, (err, address) => {
-  if (err) {
-    console.error(err);
-    process.exit(1);
-  }
-  console.log(`server listening on ${address}`);
-});
+app.listen({ port: 3000 });
