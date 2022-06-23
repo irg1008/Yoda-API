@@ -1,13 +1,17 @@
 import Fastify from 'fastify';
-import { userRoutes } from 'routes';
+import { routes } from 'routes';
 import { fastifyOptions } from 'config/fastify';
+import { addDocs } from 'lib/utils/docs';
 
-const app = Fastify(fastifyOptions);
+const startApp = async () => {
+  const app = Fastify(fastifyOptions);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+  await addDocs(app, { prefix: '/docs' });
+  app.register(routes, { prefix: '/api' });
 
-app.register(userRoutes, { prefix: '/user' });
+  await app.ready();
+  app.swagger();
+  app.listen({ port: 3000 });
+};
 
-app.listen({ port: 3000 });
+startApp();
