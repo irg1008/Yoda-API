@@ -1,3 +1,5 @@
-Este es el backend de YODA.
+# Api
 
-Despues hay que crear un pequeño paquete en .net para consumir esto en lighthouse.
+Api endpoint: <https://yoda-api.onrender.com>
+
+Docs: <https://yoda-api.onrender.com/docs>
