@@ -6,8 +6,7 @@ const list = async () => db.apiKey.findMany();
 
 const get = async (id: string) => db.apiKey.findUnique({ where: { id } });
 
-const getByKey = async (key: string) =>
-  db.apiKey.findUnique({ where: { apiKey: key } });
+const getByKey = async (key: string) => db.apiKey.findUnique({ where: { apiKey: key } });
 
 const remove = async (id: string) => {
   const apiKey = await get(id);

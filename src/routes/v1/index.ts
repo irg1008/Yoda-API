@@ -3,7 +3,9 @@ import userRoutes from './user';
 import completionRoutes from './completion';
 
 const routes: FastifyPluginAsync = async (app) => {
-  app.get('/', async (_, res) => {
+  app.get('/', {
+    schema: { hide: true },
+  }, async (_, res) => {
     res.send({ version: 'v1' });
   });
 

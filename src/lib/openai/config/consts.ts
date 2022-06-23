@@ -7,7 +7,7 @@ export const fineTuneConfig: FineTuneConfig = {
   modelName: 'shortener-v0-1',
 };
 
-const TIME_MARK = '2022-06-08-08-04-32';
+const TIME_MARK = '2022-06-23-10-07-45'; // Change this when creating new model.
 const trainedModel = `${
   fineTuneConfig.model
 }:ft-personal:${fineTuneConfig.modelName.toLowerCase()}-${TIME_MARK}`;
