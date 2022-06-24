@@ -44,18 +44,24 @@ const routes: FastifyPluginAsync = async (app) => {
     const { title } = req.query;
     if (!title) res.code(400).send({ error: 'title is required' });
 
-    const { error, data } = await openaiService.getCompletion(title);
-    if (error) res.code(400).send(error);
-    const shortTitle = data?.completion || '';
+    // Return cached output if exist.
+    const generation = await generationService.getGeneration(title);
+    let shortTitle = generation?.output;
 
-    // Log completion.
-    const authKey = req.headers.authorization?.split(' ')[1];
-    const apiKey = await apiKeyService.getByKey(authKey ?? '');
-    await generationService.logGeneration({ input: title, output: shortTitle, apiKeyId: apiKey?.id ?? '' });
+    // If not cached, create.
+    if (!shortTitle) {
+      const { error, data } = await openaiService.getCompletion(title);
+      if (error) res.code(400).send(error);
+      shortTitle = data?.completion || '';
+
+      // Log completion.
+      const authKey = req.headers.authorization?.split(' ')[1];
+      const apiKey = await apiKeyService.getByKey(authKey ?? '');
+      await generationService.logGeneration({ input: title, output: shortTitle, apiKeyId: apiKey?.id ?? '' });
+    }
 
     // Get estimated price.
     const price = getEstimatedPrice(title, shortTitle);
-
     return { shortTitle, estimatedPrice: price, priceUnit: 'USD' };
   });
 };
