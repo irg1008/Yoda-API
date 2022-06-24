@@ -1,7 +1,11 @@
-import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
-import { openaiService } from 'lib/services';
+import { FastifyPluginAsync, FastifyRequest } from 'fastify';
+import { getEstimatedPrice } from 'lib/openai/utils/prices';
+import { apiKeyService, generationService, openaiService } from 'lib/services';
+import { authApp } from 'lib/utils/auth';
 
 const routes: FastifyPluginAsync = async (app) => {
+  await authApp(app);
+
   app.get('/', {
     schema: {
       tags: ['completion'],
@@ -24,6 +28,14 @@ const routes: FastifyPluginAsync = async (app) => {
               type: 'string',
               description: 'Short title for the given title',
             },
+            estimatedPrice: {
+              type: 'number',
+              description: 'Estimated price of the summarization',
+            },
+            priceUnit: {
+              type: 'string',
+              description: 'Price unit',
+            },
           },
         },
       },
@@ -31,9 +43,20 @@ const routes: FastifyPluginAsync = async (app) => {
   }, async (req: FastifyRequest<{Querystring: {title: string}}>, res) => {
     const { title } = req.query;
     if (!title) res.code(400).send({ error: 'title is required' });
+
     const { error, data } = await openaiService.getCompletion(title);
     if (error) res.code(400).send(error);
-    return { shortTitle: data?.completion };
+    const shortTitle = data?.completion || '';
+
+    // Log completion.
+    const authKey = req.headers.authorization?.split(' ')[1];
+    const apiKey = await apiKeyService.getByKey(authKey ?? '');
+    await generationService.logGeneration({ input: title, output: shortTitle, apiKeyId: apiKey?.id ?? '' });
+
+    // Get estimated price.
+    const price = getEstimatedPrice(title, shortTitle);
+
+    return { shortTitle, estimatedPrice: price, priceUnit: 'USD' };
   });
 };
 
