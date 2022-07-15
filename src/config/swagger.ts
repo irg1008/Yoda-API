@@ -4,16 +4,14 @@ export const swaggerOptions: SwaggerOptions = {
   swagger: {
     info: {
       title: 'Yoda API',
-      description: 'Testing the Yoda API',
-      version: '0.0.1',
+      description: 'Title summarization and description keyword extraction',
+      version: '0.2.0',
     },
     externalDocs: {
       url: 'https://github.com/irg1008/Yoda-API.git',
       description: 'Find more info here',
     },
-    tags: [
-      { name: 'user', description: 'User related end-points' },
-    ],
+    tags: [{ name: 'user', description: 'User related end-points' }],
     definitions: {
       // User: {
       //   type: 'object',
