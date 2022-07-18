@@ -23,7 +23,8 @@ jobs:
 
       - name: npm install, build and test
         run: |
-          npm install && npm install cross-env
+          npm install
+          npm install --global cross-env
           npm run build --if-present
           npm run test --if-present
           
