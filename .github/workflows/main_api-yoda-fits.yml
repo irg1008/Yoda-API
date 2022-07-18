@@ -21,12 +21,11 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: npm install, build, test and run
+      - name: npm install, build and test
         run: |
-          npm install
+          npm install && npm install cross-env
           npm run build --if-present
           npm run test --if-present
-          npm run start
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
