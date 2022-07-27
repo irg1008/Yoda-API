@@ -4,13 +4,13 @@ export const fineTuneConfig: FineTuneConfig = {
   model: 'curie',
   batchSize: 4,
   iters: 10,
-  modelName: 'shortener-v0-1',
+  modelName: 'shortener-v0-2',
 };
 
-const TIME_MARK = '2022-06-23-10-07-45'; // Change this when creating new model.
+const TIME_MARK = '2022-07-27-10-54-50'; // Change this when creating new model.
 const trainedModel = `${
   fineTuneConfig.model
-}:ft-personal:${fineTuneConfig.modelName.toLowerCase()}-${TIME_MARK}`;
+}:ft-lighthouse-feed:${fineTuneConfig.modelName.toLowerCase()}-${TIME_MARK}`;
 
 export const consts: Consts = {
   fineTunnedModel: trainedModel,
