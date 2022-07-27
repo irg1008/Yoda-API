@@ -47,7 +47,6 @@ const routes: FastifyPluginAsync = async (app) => {
     // Return cached output if exist.
     const generation = await generationService.getGeneration(title);
     let shortTitle = generation?.output;
-    console.log(shortTitle);
 
     // If not cached, create.
     if (!shortTitle) {
