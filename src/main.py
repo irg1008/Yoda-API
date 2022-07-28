@@ -23,6 +23,11 @@ class EntitiesModel(BaseModel):
     entities: Entities
 
 
+@app.get("/")
+def read_root():
+    return {"Hello": "Yoda NER"}
+
+
 @app.get(
     "/ents",
     tags=["ner"],
