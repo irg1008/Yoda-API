@@ -2,11 +2,11 @@ FROM node:14-slim
 
 WORKDIR /app
 
-COPY package*.json .
+COPY package*.json ./
 COPY prisma ./prisma
-COPY .env .
-COPY tsconfig.json .
-COPY . .
+COPY .env ./
+COPY tsconfig.json ./
+COPY ./ ./
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y libssl-dev
