@@ -4,8 +4,10 @@ ENV PYTHONUNBUFFERED 1
 EXPOSE 8000
 WORKDIR /app
 
+# Download packages folder to install model.
+RUN gdown --folder "1MMJrkXZEVR6PBfbx-nPLZQX_DXgIUHS-" -O ./packages 
+
 COPY ./requirements.txt .
-COPY ./packages ./packages
 COPY ./src ./src
 
 RUN pip install -r requirements.txt
