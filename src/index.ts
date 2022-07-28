@@ -9,6 +9,10 @@ const startApp = async () => {
   await addDocs(app, { prefix: '/docs' });
   app.register(routes, { prefix: '/api' });
 
+  app.get('/', async (req, reply) => {
+    reply.send({ hello: 'Yoda FITS (First Intergalactic Title Shortener)' });
+  });
+
   await app.ready();
   app.swagger();
 
