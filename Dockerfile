@@ -9,7 +9,7 @@ COPY ./src ./src
 
 # Download packages folder to install model.
 RUN pip install gdown
-RUN gdown --no-cookies --folder "1MMJrkXZEVR6PBfbx-nPLZQX_DXgIUHS-" -O ./packages 
+RUN gdown --no-cookies --folder "1Qg265DJn2YYPMnJ3h3rWY_1mY-cNfOOj" -O ./packages 
 
 RUN pip install -r requirements.txt
 
