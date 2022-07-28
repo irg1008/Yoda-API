@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://yodacr.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_aa4066a37185434b8dd3559c15e32b0c }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_c2145018fd134453b734a6c84f51fc09 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_cd2dcb23ae5c42ee94cedbdedbd9da21 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_a6d64cc89fe242658d24da7ef75c07fc }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: yodacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_aa4066a37185434b8dd3559c15e32b0c }}/yoda-ner-api:${{ github.sha }}
+        tags: yodacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cd2dcb23ae5c42ee94cedbdedbd9da21 }}/yoda-ner-api:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'yoda-ner-api'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a6d16f9326eb48baba3df62e143d3d20 }}
-        images: 'yodacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_aa4066a37185434b8dd3559c15e32b0c }}/yoda-ner-api:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_434fa180a2d642cd975417919fa290a2 }}
+        images: 'yodacr.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cd2dcb23ae5c42ee94cedbdedbd9da21 }}/yoda-ner-api:${{ github.sha }}'
