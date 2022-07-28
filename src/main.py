@@ -31,7 +31,7 @@ class EntitiesModel(BaseModel):
 )
 async def ner(text: str) -> EntitiesModel:
     if not text:
-        raise HTTPException(status_code=400, detail="No empty text please")
+        raise HTTPException(status_code=400, detail="Provide a valid text")
 
     ents = get_ents(text)
 
