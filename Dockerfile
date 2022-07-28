@@ -9,11 +9,11 @@ COPY ./src ./src
 
 # Download packages folder to install model.
 RUN pip install gdown
-RUN gdown --folder "1MMJrkXZEVR6PBfbx-nPLZQX_DXgIUHS-" -O ./packages 
+RUN gdown --no-cookies --folder "1MMJrkXZEVR6PBfbx-nPLZQX_DXgIUHS-" -O ./packages 
 
 RUN pip install -r requirements.txt
 
 RUN rm -rf ./packages
 
 WORKDIR /app/src
-CMD ["uvicorn", "main:app", "--port", "8000", "--host", "0.0.0.0"]
+CMD ["gunicorn", "-w", "4", "-b", ":8000", "main:app"]
