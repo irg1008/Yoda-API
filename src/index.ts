@@ -14,8 +14,8 @@ const startApp = async () => {
     {
       schema: { hide: true },
     },
-    async (req, reply) => {
-      reply.send({ hello: 'Yoda FITS (First Intergalactic Title Shortener)' });
+    async (_, reply) => {
+      reply.send({ hello: 'Yoda FITS (First Intergalactic Title Shortener)!' });
     },
   );
 
