@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY prisma ./prisma
-COPY tsconfig.json .env ./
+COPY tsconfig.json ./
 COPY ./ ./
 
 ENV DEBIAN_FRONTEND=noninteractive
