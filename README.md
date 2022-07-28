@@ -13,3 +13,11 @@ Yoda is a AI based title shortener to optimize product data from your feed adjus
 Api endpoint: <https://yoda-api.onrender.com>
 
 Docs: <https://yoda-api.onrender.com/docs>
+
+## Run with Docker locally
+
+`docker build --build-arg MONGODB_URI=... -t yoda-fits-api .`
+
+then
+
+`docker run -e "OPENAI_API_KEY=..." -p 3000:<$PORT> yoda-fits-api`

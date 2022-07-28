@@ -3,4 +3,8 @@ import { routes as v1 } from './v1';
 
 export const routes: FastifyPluginAsync = async (app) => {
   app.register(v1, { prefix: '/v1' });
+
+  app.get('/', async (req, reply) => {
+    reply.send({ hello: 'Yoda FITS (First Intergalactic Title Shortener)' });
+  });
 };
