@@ -19,12 +19,6 @@ app.add_middleware(
 )
 
 
-## Close sseion on server close.
-@app.on_event("shutdown")
-async def shutdown():
-    del onnx_session
-
-
 class EntitiesModel(BaseModel):
     entities: Entities
 
