@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 RUN rm -rf ./packages
 
 WORKDIR /app/src
-CMD ["uvicorn", "main:app", "--port", "8000", "--host", "0.0.0.0"]
+CMD ["gunicorn", "main:app", "-w", "4", "-k", "gevent", "-t", "120", "--host", "0.0.0.0", "--port", "8000"]

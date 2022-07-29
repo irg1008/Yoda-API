@@ -31,4 +31,4 @@ Entramos en la carpeta src: `cd src`
 
 ---
 
-Comando: `gunicorn -w 4 -k gevent --timeout 120 main:app`
+Comando: `gunicorn -w 4 -k gevent -t 120 main:app`
