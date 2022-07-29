@@ -1,7 +1,7 @@
 FROM python:3.9.8-slim
 
 ENV PYTHONUNBUFFERED 1 
-EXPOSE 8080
+EXPOSE 8000
 WORKDIR /app
 
 COPY ./requirements.txt .
@@ -15,5 +15,4 @@ RUN pip install -r requirements.txt
 
 RUN rm -rf ./packages
 
-WORKDIR /app/src
-CMD ["gunicorn", "main:app", "-w", "4", "-k", "gevent", "-t", "120"]
+CMD ["gunicorn", "--chdir", "src", "main:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-t", "120", "--bind", "0.0.0.0"]
