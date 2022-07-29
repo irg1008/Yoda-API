@@ -1,6 +1,7 @@
 FROM python:3.9.8-slim
 
 ENV PYTHONUNBUFFERED 1 
+EXPOSE 8080
 WORKDIR /app
 
 COPY ./requirements.txt .
