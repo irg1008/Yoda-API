@@ -26,3 +26,9 @@ Entramos en la carpeta src: `cd src`
 1. Construye la imagen con `docker build -t yoda-ner-api .`
 2. Ejecútalo: `docker run -p 8000:8000 yoda-ner-api`
 3. Accede desde el navegador en `http://localhost:8000`
+
+## Ejecución en la nube
+
+---
+
+Comando: `gunicorn -w 4 -k gevent --timeout 120 main:app`
