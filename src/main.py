@@ -25,7 +25,7 @@ class EntitiesModel(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Yoda NER"}
+    return {"hello": "Yoda NER"}
 
 
 @app.get(
