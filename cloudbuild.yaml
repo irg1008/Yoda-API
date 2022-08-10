@@ -4,9 +4,11 @@ steps:
     args:
       - build
       - --network=host
-      - --no-cache
       - --pull
       - -t
-      - gcr.io/cloud-builders/docker
+      - gcr.io/$PROJECT_ID/yoda-ner-api:latest
       - .
+
 timeout: 1200s
+
+images: ["gcr.io/$PROJECT_ID/yoda-ner-api:latest"]
