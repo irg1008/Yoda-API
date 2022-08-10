@@ -1,0 +1,12 @@
+steps:
+  - timeout: 1200s
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --network=host
+      - --no-cache
+      - --pull
+      - -t
+      - gcr.io/cloud-builders/docker
+      - .
+timeout: 1200s
