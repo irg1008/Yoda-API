@@ -13,4 +13,4 @@ RUN gdown --folder "1j--I_KpFWw8HVmtFAHz3meEh5tPlhCup" -O ./models
 
 RUN pip install -r requirements.txt
 
-CMD ["gunicorn", "--chdir", "src", "main:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-t", "120", "--bind", "0.0.0.0"]
+CMD ["gunicorn", "--chdir", "src", "main:app", "-w", "2", "-k", "uvicorn.workers.UvicornWorker", "-t", "120", "--bind", "0.0.0.0"]
