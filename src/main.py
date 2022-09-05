@@ -11,6 +11,7 @@ fits_controller: FitsController
 # Origins for development and production clients.
 origins = ["http://localhost:3000"]
 
+# Add root as api and api versions routes as well
 
 app.add_middleware(
     CORSMiddleware,
