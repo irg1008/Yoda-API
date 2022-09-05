@@ -1,17 +1,13 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from api import router
 
-from lib.fits import FitsController, FitsModel
-from lib.ner import NerController, NerModel
 
 app = FastAPI()
-ner_controller: NerController
-fits_controller: FitsController
+app.include_router(router)
 
 # Origins for development and production clients.
-origins = ["http://localhost:3000"]
-
-# Add root as api and api versions routes as well
+origins = ["http://localhost:3000", "https://app.lighthousefeed.com"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,43 +19,6 @@ app.add_middleware(
 )
 
 
-@app.on_event("startup")
-async def startup_event():
-    global ner_controller, fits_controller
-    ner_controller = NerController()
-    fits_controller = FitsController()
-
-
 @app.get("/")
-def read_root():
-    return {"hello": "Yoda NER"}
-
-
-@app.get(
-    "/ents",
-    tags=["ner"],
-    description="Get text entities",
-    response_model=NerModel,
-)
-async def ner(text: str) -> NerModel:
-    if not text:
-        raise HTTPException(status_code=400, detail="Provide a valid text")
-
-    entities = ner_controller.infer(text)
-
-    return NerModel(entities=entities)
-
-
-@app.get(
-    "/completion",
-    tags=["fits"],
-    description="Get text completion",
-    response_model=FitsModel,
-)
-async def fits(text: str) -> FitsModel:
-    if not text:
-        raise HTTPException(status_code=400, detail="Provide a valid text")
-
-    completion = fits_controller.get_completion(text)
-
-    return FitsModel(completion=completion)
+def root():
+    return {"hello": "Yoda API"}
