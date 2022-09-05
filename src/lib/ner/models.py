@@ -1,18 +1,18 @@
 from pydantic import BaseModel
+from typing import Optional, Union
 
-Entities = dict[str, list[str]]
+Entity = list[Union[str, int]]
 
 
-class NerModel(BaseModel):
-    entities: Entities
+class Entities(BaseModel):
+    color: Optional[Entity]
+    size: Optional[Entity]
 
     class Config:
         schema_extra = {
             "example": {
-                "entities": {
-                    "color": ["red", "blue"],
-                    "size": ["s", "l", "43.5"],
-                    "brand": ["Zara", "Adidas"],
-                }
+                "color": ["red", "blue"],
+                "size": ["s", "l", "43.5"],
+                "brand": ["Zara", "Adidas"],
             }
         }

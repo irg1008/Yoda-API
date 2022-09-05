@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from lib.ner import NerController, NerModel
+from lib.ner import NerController, Entities
 
 router = APIRouter()
 
@@ -14,14 +14,12 @@ async def startup_event():
 
 @router.get(
     "/ents",
-    tags=["ner"],
+    tags=["NER"],
     description="Get text entities",
-    response_model=NerModel,
+    response_model=Entities,
 )
-async def ner(text: str) -> NerModel:
+async def ner(text: str):
     if not text:
         raise HTTPException(status_code=400, detail="Provide a valid text")
 
-    entities = ner_controller.infer(text)
-
-    return NerModel(entities=entities)
+    return ner_controller.infer(text)

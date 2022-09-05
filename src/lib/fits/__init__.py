@@ -1,2 +1,2 @@
 from .controller import FitsController
-from .models import FitsModel
+from .models import Completion

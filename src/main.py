@@ -19,6 +19,6 @@ app.add_middleware(
 )
 
 
-@app.get("/")
+@app.get("/", include_in_schema=False)
 def root():
     return {"hello": "Yoda API"}

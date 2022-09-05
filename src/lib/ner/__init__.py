@@ -1,2 +1,2 @@
 from .controller import NerController
-from .models import NerModel
+from .models import Entities
