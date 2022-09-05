@@ -2,6 +2,9 @@ from flair.data import Sentence
 from flair.models import SequenceTagger
 from os import path
 from .models import Entities
+import logging
+
+logging.getLogger("flair").setLevel(logging.ERROR)
 
 
 class NerService:
