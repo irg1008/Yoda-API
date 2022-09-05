@@ -1,8 +1,9 @@
 from pydantic import BaseModel
-from .inference import Entities
+
+Entities = dict[str, list[str]]
 
 
-class NERInferenceModel(BaseModel):
+class NerModel(BaseModel):
     entities: Entities
 
     class Config:

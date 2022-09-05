@@ -1,12 +1,11 @@
 from typing import TypedDict, Literal
 
 from ..config.types import Model
-from .tokenizer import encode
 
 priced_tokens = 1000
 
 
-class Prices(TypedDict):  # Per <_price_tokens> tokens
+class Prices(TypedDict):  # Per <priced_tokens> tokens
     training: float
     inference: float
 
@@ -36,10 +35,3 @@ def price_per_n_tokens(
 ) -> float:
     price = prices[model]
     return price[price_type] / priced_tokens * n_tokens
-
-
-def price_of_string(string: str, model: Model) -> Prices:
-    tokens = encode(string)
-    training_price = price_per_n_tokens(model, len(tokens), "training")
-    inference_price = price_per_n_tokens(model, len(tokens), "inference")
-    return Prices(training=training_price, inference=inference_price)

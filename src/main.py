@@ -1,14 +1,11 @@
-from decouple import config
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from lib.fits.controller import FitsController
-from lib.fits.models import FITSModel
-from lib.ner.inference import Inference
-from lib.ner.models import NERInferenceModel
+from lib.fits import FitsController, FitsModel
+from lib.ner import NerController, NerModel
 
 app = FastAPI()
-ner_engine: Inference
+ner_controller: NerController
 fits_controller: FitsController
 
 # Origins for development and production clients.
@@ -27,8 +24,8 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup_event():
-    global ner_engine, fits_controller
-    ner_engine = Inference("ner")
+    global ner_controller, fits_controller
+    ner_controller = NerController()
     fits_controller = FitsController()
 
 
@@ -41,27 +38,27 @@ def read_root():
     "/ents",
     tags=["ner"],
     description="Get text entities",
-    response_model=NERInferenceModel,
+    response_model=NerModel,
 )
-async def ner(text: str) -> NERInferenceModel:
+async def ner(text: str) -> NerModel:
     if not text:
         raise HTTPException(status_code=400, detail="Provide a valid text")
 
-    entities = ner_engine.infer(text)
+    entities = ner_controller.infer(text)
 
-    return NERInferenceModel(entities=entities)
+    return NerModel(entities=entities)
 
 
 @app.get(
     "/completion",
     tags=["fits"],
     description="Get text completion",
-    response_model=FITSModel,
+    response_model=FitsModel,
 )
-async def fits(text: str) -> FITSModel:
+async def fits(text: str) -> FitsModel:
     if not text:
         raise HTTPException(status_code=400, detail="Provide a valid text")
 
     completion = fits_controller.get_completion(text)
 
-    return FITSModel(completion=completion)
+    return FitsModel(completion=completion)

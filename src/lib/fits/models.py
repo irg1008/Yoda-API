@@ -2,14 +2,14 @@ from typing import TypedDict, Literal
 from pydantic import BaseModel
 
 
-class FITSCompletion(TypedDict):
-    completion: str
+class FitsCompletion(TypedDict):
+    title: str
     estimated_price: float
     price_unit: Literal["USD"]
 
 
-class FITSModel(BaseModel):
-    completion: FITSCompletion
+class FitsModel(BaseModel):
+    completion: FitsCompletion
 
     class Config:
         schema_extra = {

@@ -1,16 +1,11 @@
 from flair.data import Sentence
 from flair.models import SequenceTagger
 from os import path
+from .models import Entities
 
 
-Entities = dict[str, list[str]]
-
-MODELS_FOLDER = path.join(path.dirname(__file__), "../../../models")
-
-
-class Inference:
-    def __init__(self, model_name: str):
-        model_path = path.abspath(path.join(MODELS_FOLDER, model_name, "best_model.pt"))
+class NerService:
+    def __init__(self, model_path: str):
         self.model = self._load_model(model_path)
 
     def _load_model(self, model_path: str) -> SequenceTagger:
