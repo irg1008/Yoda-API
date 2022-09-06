@@ -3,16 +3,15 @@ from motor.motor_asyncio import (
     AsyncIOMotorDatabase,
     AsyncIOMotorCollection,
 )
-from motor.core import AgnosticDatabase, AgnosticCollection
+from motor.core import AgnosticCollection
 from decouple import config
-from typing import TypedDict
 
 client = AsyncIOMotorClient(config("MONGO_URI"))
 
-# Using agnostic for typing due to async not having type completion. 😿
 
 db: AsyncIOMotorDatabase = client["yoda-db"]
 
+# Check "AgnosticCollection" for type completion. 😿
 
 api_keys: AsyncIOMotorCollection = db["api_keys"]
 generations: AsyncIOMotorCollection = db["generations"]
