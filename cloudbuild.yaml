@@ -5,10 +5,8 @@ steps:
       - build
       - --network=host
       - --pull
-      - -t
-      - gcr.io/$PROJECT_ID/yoda-ner-api:latest
       - .
 
 timeout: 1200s
 
-images: ["gcr.io/$PROJECT_ID/yoda-ner-api:latest"]
+images: ["gcr.io/$PROJECT_ID/$REPO_NAME@sha256:$COMMIT_SHA"]
