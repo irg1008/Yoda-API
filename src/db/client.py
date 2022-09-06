@@ -1,5 +1,5 @@
-from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
-from motor.core import AgnosticDatabase, AgnosticCollection
+from motor.motor_asyncio import AsyncIOMotorClient
+from motor.core import AgnosticDatabase
 from decouple import config
 
 client = AsyncIOMotorClient(config("MONGO_URI"))

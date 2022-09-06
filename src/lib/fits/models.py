@@ -1,5 +1,5 @@
 from typing import Literal
-from utils.alias import Model
+from utils.models import Model
 
 
 class Completion(Model):

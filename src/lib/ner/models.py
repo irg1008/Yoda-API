@@ -1,5 +1,5 @@
 from typing import Optional, Union
-from utils.alias import Model
+from utils.models import Model
 
 Entity = list[Union[str, int]]
 
