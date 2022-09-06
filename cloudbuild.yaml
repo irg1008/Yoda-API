@@ -5,6 +5,8 @@ steps:
       - build
       - --network=host
       - --pull
+      - -t
+      - gcr.io/$PROJECT_ID/yoda-ner-api@sha256:$COMMIT_SHA
       - .
 
 timeout: 1200s
