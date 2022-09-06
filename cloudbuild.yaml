@@ -6,10 +6,7 @@ steps:
       - --network=host
       - --pull
       - -t
-      - ${_IMAGE_NAME}
+      - gcr.io/$PROJECT_ID/$REPO_NAME@sha256:$COMMIT_SHA
       - .
 
-images: ["${_IMAGE_NAME}"]
-
-substitutions:
-  _IMAGE_NAME: "gcr.io/$PROJECT_ID/$REPO_NAME@sha256:$COMMIT_SHA"
+images: ["gcr.io/$PROJECT_ID/$REPO_NAME@sha256:$COMMIT_SHA"]
