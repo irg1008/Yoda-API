@@ -6,7 +6,9 @@ steps:
       - --network=host
       - --pull
       - -t
-      - gcr.io/$PROJECT_ID/$REPO_NAME:latest
+      - gcr.io/$PROJECT_ID/yoda-ner-api:latest
       - .
 
-images: ["gcr.io/$PROJECT_ID/$REPO_NAME:latest"]
+timeout: 1200s
+
+images: ["gcr.io/$PROJECT_ID/yoda-ner-api:latest"]
