@@ -1,10 +1,10 @@
-from pydantic import BaseModel
 from typing import Optional, Union
+from utils.alias import Model
 
 Entity = list[Union[str, int]]
 
 
-class Entities(BaseModel):
+class Entities(Model):
     color: Optional[Entity]
     size: Optional[Entity]
 

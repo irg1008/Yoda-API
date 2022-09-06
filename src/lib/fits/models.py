@@ -1,8 +1,8 @@
 from typing import Literal
-from pydantic import BaseModel
+from utils.alias import Model
 
 
-class Completion(BaseModel):
+class Completion(Model):
     title: str
     estimated_price: float
     price_unit: Literal["USD"]
