@@ -18,8 +18,8 @@ async def startup_event():
     description="Get text completion",
     response_model=Completion,
 )
-async def fits(text: str):
-    if not text:
-        raise HTTPException(status_code=400, detail="Provide a valid text")
+async def fits(title: str):
+    if not title:
+        raise HTTPException(status_code=400, detail="Provide a valid title")
 
-    return fits_controller.get_completion(text)
+    return fits_controller.get_completion(title)

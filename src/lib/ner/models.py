@@ -1,18 +1,11 @@
-from pydantic import BaseModel
 from typing import Optional, Union
+
+from pydantic import Field
+from utils.models import Model
 
 Entity = list[Union[str, int]]
 
 
-class Entities(BaseModel):
-    color: Optional[Entity]
-    size: Optional[Entity]
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "color": ["red", "blue"],
-                "size": ["s", "l", "43.5"],
-                "brand": ["Zara", "Adidas"],
-            }
-        }
+class Entities(Model):
+    color: Optional[Entity] = Field(example=["red", "blue"])
+    size: Optional[Entity] = Field(example=["small", "large", "43,5"])

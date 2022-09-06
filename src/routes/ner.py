@@ -18,8 +18,8 @@ async def startup_event():
     description="Get text entities",
     response_model=Entities,
 )
-async def ner(text: str):
-    if not text:
-        raise HTTPException(status_code=400, detail="Provide a valid text")
+async def ner(title: str):
+    if not title:
+        raise HTTPException(status_code=400, detail="Provide a valid title")
 
-    return ner_controller.infer(text)
+    return ner_controller.infer(title)

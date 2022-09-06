@@ -1,17 +1,14 @@
-from typing import Literal
-from pydantic import BaseModel
+from enum import Enum
+
+from pydantic import Field
+from utils.models import Model
 
 
-class Completion(BaseModel):
-    title: str
-    estimated_price: float
-    price_unit: Literal["USD"]
+class PriceUnit(str, Enum):
+    usd = "USD"
 
-    class Config:
-        schema_extra = {
-            "example": {
-                "title": "This a shorter text for title",
-                "estimated_price": 0.0001,
-                "price_unit": "USD",
-            }
-        }
+
+class Completion(Model):
+    title: str = Field(example="A short title given a much longer one")
+    estimated_price: float = Field(example=4e-5)
+    price_unit: PriceUnit = Field(example=PriceUnit.usd)
