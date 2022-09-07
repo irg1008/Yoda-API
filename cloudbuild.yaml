@@ -5,6 +5,7 @@ steps:
       - --cache=true
       - --verbosity=debug
       - --snapshotMode=redo
+      - --use-new-run
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
