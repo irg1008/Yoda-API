@@ -1,7 +1,7 @@
 from flair.data import Sentence
 from flair.models import SequenceTagger
 from os import path
-from .models import Entities
+from .models import Entities, Entity
 import logging
 
 logging.getLogger("flair").setLevel(logging.ERROR)
@@ -22,7 +22,7 @@ class NerService:
         return sentence
 
     def _get_entities(self, sentence: Sentence) -> Entities:
-        ents: Entities = {}
+        ents: dict[str, Entity] = {}
 
         for entity in sentence.get_spans("ner"):
             tag = entity.tag
@@ -40,7 +40,7 @@ class NerService:
 
             ents[tag].append(text)
 
-        return ents
+        return Entities(**ents)
 
     def infer(self, text) -> Entities:
         sentence = self._predict(text)
