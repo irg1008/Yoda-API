@@ -5,4 +5,17 @@ steps:
       - --cache=true
       - --verbosity=debug
 
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - run
+      - deploy
+      - $_SERVICE_NAME
+      - --image=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
+      - --platform=managed
+      - --region=europe-west1
+      - --allow-unauthenticated
+      - --project=$PROJECT_ID
+      - --verbosity=debug
+      - --quiet
+
 timeout: 1200s
