@@ -42,6 +42,6 @@ class FitsService:
                 "echo": False,
             },
         )
-        completion.replace(config["completion_start"], "")
+        completion = completion.replace(config["completion_start"], "")
         price = self._get_infer_price(n_tokens)
         return completion, price
