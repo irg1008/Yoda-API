@@ -3,3 +3,5 @@ steps:
     args:
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
       - --cache=true
+
+timeout: 1200s
