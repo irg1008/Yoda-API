@@ -16,6 +16,9 @@ class FitsService:
     def _decode(self, tokens: list[int]):
         return decode(self.tokenizer, tokens)
 
+    def _get_infer_price(self, n_tokens: int) -> float:
+        return price_per_n_tokens(fine_tune_config["model_base"], n_tokens, "inference")
+
     def get_max_tokens_for_prompt(self, prompt: str) -> int:
         final_prompt = prompt + config["completion_end"]
 
@@ -27,10 +30,10 @@ class FitsService:
 
         return int(max_tokens)
 
-    def infer(self, text: str) -> tuple[str, int]:
+    def infer(self, text: str) -> tuple[str, float]:
         completion, n_tokens = OpenAIClient.infer(
             {
-                "prompt": text,
+                "prompt": f"${config['prompt_start']}text${config['prompt_end']}",
                 "model": config["model_name"],
                 "max_tokens": self.get_max_tokens_for_prompt(text),
                 "stop": config["completion_end"],
@@ -40,7 +43,5 @@ class FitsService:
             },
         )
         completion.replace(config["completion_start"], "")
-        return completion, n_tokens
-
-    def get_infer_price(self, n_tokens: int):
-        return price_per_n_tokens(fine_tune_config["model_base"], n_tokens, "inference")
+        price = self._get_infer_price(n_tokens)
+        return completion, price
