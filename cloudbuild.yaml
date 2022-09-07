@@ -1,14 +1,5 @@
 steps:
-  - timeout: 1200s
-    name: gcr.io/cloud-builders/docker
+  - name: "gcr.io/kaniko-project/executor:latest"
     args:
-      - build
-      - -t
-      - "$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"
-      - "--cache-from"
-      - "$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"
-      - .
-
-timeout: 1200s
-
-images: ["$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"]
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
+      - --cache=true
