@@ -3,9 +3,9 @@ steps:
     name: gcr.io/cloud-builders/docker
     args:
       - build
-      - --network=host
-      - --pull
       - -t
+      - "$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"
+      - "--cache-from"
       - "$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"
       - .
 
