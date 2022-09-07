@@ -33,7 +33,7 @@ class FitsService:
     def infer(self, text: str) -> tuple[str, float]:
         completion, n_tokens = OpenAIClient.infer(
             {
-                "prompt": f"${config['prompt_start']}text${config['prompt_end']}",
+                "prompt": f"${config['prompt_start']}${text}${config['prompt_end']}",
                 "model": config["model_name"],
                 "max_tokens": self.get_max_tokens_for_prompt(text),
                 "stop": config["completion_end"],
