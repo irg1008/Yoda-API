@@ -4,6 +4,7 @@ steps:
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
       - --cache=true
       - --verbosity=debug
+      - --snapshotMode=redo
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
