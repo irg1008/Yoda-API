@@ -6,9 +6,9 @@ steps:
       - --network=host
       - --pull
       - -t
-      - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:latest"
+      - "$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"
       - .
 
 timeout: 1200s
 
-images: ["$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:latest"]
+images: ["$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME:latest"]
