@@ -1,5 +1,5 @@
 steps:
-  - name: "gcr.io/kaniko-project/executor:v1.9.0"
+  - name: "gcr.io/kaniko-project/executor:v1.3.0"
     args:
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
       - --cache=true
