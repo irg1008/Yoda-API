@@ -1,8 +1,7 @@
 steps:
-  - name: "gcr.io/kaniko-project/executor:v1.8.0"
+  - name: "gcr.io/kaniko-project/executor:v1.8.0-debug"
     args:
       - --destination=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
       - --cache=true
-      - --snapshotMode=redo
 
 timeout: 1200s
