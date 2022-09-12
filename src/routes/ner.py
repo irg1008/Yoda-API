@@ -15,7 +15,7 @@ async def startup_event():
 @router.get(
     "/ents",
     tags=["NER"],
-    description="Get text entities",
+    description="Get title entities",
     response_model=Entities,
 )
 async def ner(title: str):
