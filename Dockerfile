@@ -13,4 +13,4 @@ RUN gdown --folder "1vm17O0m1M1bvnp_yhHmzgOuVoOTAN1kD" -O ./models
 
 COPY ./src ./src
 
-CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 2 --timeout 0 --chdir src main:app
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 2 -k uvicorn.workers.UvicornWorker --timeout 0 --chdir src main:app
