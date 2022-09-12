@@ -1,4 +1,4 @@
-# NER API
+# YODA API
 
 ## Instalación
 
@@ -23,8 +23,8 @@ Entramos en la carpeta src: `cd src`
 
 ---
 
-1. Construye la imagen con `docker build -t yoda-ner-api .`
-2. Ejecútalo: `docker run -p 8000:8000 yoda-ner-api`
+1. Construye la imagen con `docker build -t yoda-api .`
+2. Ejecútalo: `docker run -p 8000:8000 yoda-api`
 3. Accede desde el navegador en `http://localhost:8000`
 
 ## Ejecución en la nube
