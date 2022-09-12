@@ -4,7 +4,7 @@ from api import router
 
 
 app = FastAPI()
-app.include_router(router)
+app.include_router(router, prefix="/api")
 
 # Origins for development and production clients.
 origins = ["http://localhost:3000", "https://app.lighthousefeed.com"]
