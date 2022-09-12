@@ -3,7 +3,6 @@ FROM python:3.9.8-slim
 ENV PYTHONUNBUFFERED=True
 ARG MODELS_FOLDER_ID="1vm17O0m1M1bvnp_yhHmzgOuVoOTAN1kD"
 ARG APP_DIR="/app"
-ARG N_WORKERS=2
 
 WORKDIR $APP_DIR
 
@@ -16,4 +15,4 @@ RUN gdown --folder $MODELS_FOLDER_ID -O ./models
 
 COPY ./src ./src
 
-CMD exec gunicorn --bind 0.0.0.0:$PORT --workers $N_WORKERS -k uvicorn.workers.UvicornWorker --timeout 0 --chdir src main:app
+CMD exec gunicorn -b 0.0.0.0:$PORT -w 2 -k uvicorn.workers.UvicornWorker -t 0 --chdir src main:app
