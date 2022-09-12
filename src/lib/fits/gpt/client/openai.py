@@ -5,9 +5,9 @@ from transformers.models.gpt2.tokenization_gpt2_fast import GPT2TokenizerFast
 
 
 class OpenAIClient:
-    openai.api_key = config("OPENAI_API_KEY")
+    def __init__(self) -> None:
+        openai.api_key = config("OPENAI_API_KEY")
 
-    @classmethod
-    def infer(cls, options: CompletionArgs) -> tuple[str, int]:
+    def infer(self, options: CompletionArgs) -> tuple[str, int]:
         response: CompletionResponse = openai.Completion.create(**options)  # type: ignore
         return response["choices"][0]["text"], response["usage"]["total_tokens"]

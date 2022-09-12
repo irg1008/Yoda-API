@@ -9,6 +9,7 @@ from .gpt.utils.tokenizer import get_tokenizer, encode, decode
 class FitsService:
     def __init__(self):
         self.tokenizer = get_tokenizer()
+        self.client = OpenAIClient()
 
     def _encode(self, text: str):
         return encode(self.tokenizer, text)
@@ -31,7 +32,7 @@ class FitsService:
         return int(max_tokens)
 
     def infer(self, text: str) -> tuple[str, float]:
-        completion, n_tokens = OpenAIClient.infer(
+        completion, n_tokens = self.client.infer(
             {
                 "prompt": f"${config['prompt_start']}${text}${config['prompt_end']}",
                 "model": config["model_name"],
