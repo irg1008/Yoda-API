@@ -1,7 +1,7 @@
 steps:
-  - name: "gcr.io/kaniko-project/executor:latest"
+  - name: "gcr.io/kaniko-project/executor:v1.3.0"
     args:
-      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
+      - --destination=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME
       - --cache=true
       - --verbosity=debug
       - --snapshotMode=redo
@@ -12,7 +12,7 @@ steps:
       - run
       - deploy
       - $_SERVICE_NAME
-      - --image=$_GCR_HOSTNAME/$PROJECT_ID/yoda-ner-api/$_SERVICE_NAME
+      - --image=$_GCR_HOSTNAME/$PROJECT_ID/$_SERVICE_NAME
       - --platform=managed
       - --region=europe-west1
       - --allow-unauthenticated
