@@ -1,4 +1,4 @@
-FROM python:3.9.8-slim
+FROM python:3.9.8-alpine
 
 ENV PYTHONUNBUFFERED=True
 ARG MODELS_FOLDER_ID="1vm17O0m1M1bvnp_yhHmzgOuVoOTAN1kD"
@@ -7,7 +7,7 @@ ARG APP_DIR="/app"
 WORKDIR $APP_DIR
 
 COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
 
 # Download packages folder to install model.
 RUN pip install gdown
