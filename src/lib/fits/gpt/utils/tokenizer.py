@@ -7,8 +7,8 @@ def get_tokenizer():
     cache_dir = path.abspath(
         path.join(path.dirname(__file__), "../../../../../models", "tokenizers")
     )
-    if not path.exists(cache_dir):
-        logging.info(f"Creating cache dir {cache_dir} for tokenizer")
+    if path.exists(cache_dir):
+        logging.info(f"Loading tokenizer from cache: {cache_dir}")
     tokenizer = GPT2TokenizerFast.from_pretrained("gpt2", cache_dir=cache_dir)
     return tokenizer
 
