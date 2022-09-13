@@ -1,11 +1,13 @@
 from transformers.models.gpt2.tokenization_gpt2_fast import GPT2TokenizerFast
 from os import path
+import logging
 
 
 def get_tokenizer():
     cache_dir = path.abspath(
         path.join(path.dirname(__file__), "../../../../../models", "tokenizers")
     )
+    logging.info(f"Loading tokenizer from {cache_dir}")
     tokenizer = GPT2TokenizerFast.from_pretrained("gpt2", cache_dir=cache_dir)
     return tokenizer
 
