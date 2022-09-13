@@ -7,11 +7,10 @@ ner_controller = NerController()
 
 @router.get(
     "/ents",
-    name="Entities",
     description="Get title entities",
     response_model=Entities,
 )
-async def ner(title: str):
+async def get_entities(title: str):
     if not title:
         raise HTTPException(status_code=400, detail="Provide a valid title")
 

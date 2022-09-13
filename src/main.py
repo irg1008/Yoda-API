@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from utils.fastapi import simplify_op_id
 
 from api import router
 
@@ -42,3 +43,6 @@ app.include_router(router, prefix="/api")
 # Origins for development and production clients.
 origins = ["http://localhost:3000", "https://app.lighthousefeed.com"]
 app.add_middleware(CORSMiddleware, allow_origins=origins)
+
+# Simplify operations IDs
+simplify_op_id(app)

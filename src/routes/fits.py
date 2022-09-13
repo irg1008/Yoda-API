@@ -7,11 +7,10 @@ fits_controller = FitsController()
 
 @router.get(
     "/completion",
-    name="Completion",
     description="Get text completion",
     response_model=Completion,
 )
-async def fits(title: str):
+async def get_completion(title: str):
     if not title:
         raise HTTPException(status_code=400, detail="Provide a valid title")
 
