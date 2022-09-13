@@ -4,9 +4,9 @@ from lib.fits import FitsController, Completion
 router = APIRouter()
 fits_controller = FitsController()
 
+
 @router.get(
     "/completion",
-    # tags=["FITS"],
     description="Get text completion",
     response_model=Completion,
 )
