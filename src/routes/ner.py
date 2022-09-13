@@ -7,6 +7,7 @@ ner_controller = NerController()
 
 @router.get(
     "/ents",
+    name="Entities",
     description="Get title entities",
     response_model=Entities,
 )
