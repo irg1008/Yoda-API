@@ -24,6 +24,10 @@ app = FastAPI(
     title="Yoda API",
     description="AI powered API for title summarization and entity extraction",
     version="0.1.0",
+    swagger_ui_parameters={
+        "docExpansion": "none",
+        "defaultModelsExpandDepth": -1,
+    },
 )
 
 
