@@ -6,7 +6,7 @@ fits_controller = FitsController()
 
 @router.get(
     "/completion",
-    tags=["FITS"],
+    # tags=["FITS"],
     description="Get text completion",
     response_model=Completion,
 )

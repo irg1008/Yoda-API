@@ -14,4 +14,4 @@ app.add_middleware(CORSMiddleware, allow_origins=origins)
 
 @app.get("/", include_in_schema=False)
 def root():
-    return {"Yoda API": "Hi! Go to /docs for the API docs."}
+    return {"Yoda API": 'Hi! Go to /docs for more information.'}
