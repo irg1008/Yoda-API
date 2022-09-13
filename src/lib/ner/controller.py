@@ -6,13 +6,7 @@ from os import path
 class NerController:
     def __init__(self):
         model_path = path.abspath(
-            path.join(
-                path.dirname(__file__),
-                "../../../models",
-                "ner",
-                "lite",
-                "best_model.pt",
-            )
+            path.join(path.dirname(__file__), "../../../models/ner/lite/best_model.pt")
         )
         self.service = NerService(model_path)
 
