@@ -24,7 +24,7 @@ Entramos en la carpeta src: `cd src`
 ---
 
 1. Construye la imagen con `docker build -t yoda-api .`
-2. Ejecútalo: `docker run -e PORT=8000 --env-file .env yoda-api`
+2. Ejecútalo: `docker run -p 8000:8000 -e PORT=8000 --env-file .env yoda-api`
 3. Accede desde el navegador en `http://localhost:8000`
 
 ## Ejecución en la nube

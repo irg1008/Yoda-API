@@ -4,7 +4,7 @@ from os import path
 from .models import Entities, Entity
 import logging
 
-# logging.getLogger("flair").setLevel(logging.ERROR)
+logging.getLogger("flair").setLevel(logging.ERROR)
 
 
 class NerService:
