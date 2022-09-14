@@ -2,13 +2,7 @@ from fastapi import APIRouter, HTTPException
 from lib.fits import FitsController, Completion
 
 router = APIRouter()
-fits_controller: FitsController
-
-
-@router.on_event("startup")
-async def startup():
-    global fits_controller
-    fits_controller = FitsController()
+fits_controller = FitsController()
 
 
 @router.get(

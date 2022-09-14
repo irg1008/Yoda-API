@@ -2,13 +2,7 @@ from fastapi import APIRouter, HTTPException
 from lib.ner import NerController, Entities
 
 router = APIRouter()
-ner_controller: NerController
-
-
-@router.on_event("startup")
-async def startup():
-    global ner_controller
-    ner_controller = NerController()
+ner_controller = NerController()
 
 
 @router.get(
