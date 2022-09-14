@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException
-from lib.fits import FitsController, Completion
+from fastapi import APIRouter, Depends
+from lib.fits import Completion, FitsController
+from utils.validation import check_title
 
-router = APIRouter()
 fits_controller = FitsController()
+router = APIRouter(dependencies=[Depends(fits_controller)])
 
 
 @router.get(
@@ -10,8 +11,5 @@ fits_controller = FitsController()
     description="Get text completion",
     response_model=Completion,
 )
-async def get_completion(title: str):
-    if not title:
-        raise HTTPException(status_code=400, detail="Provide a valid title")
-
+async def get_completion(title: str = Depends(check_title)):
     return fits_controller.get_completion(title)
