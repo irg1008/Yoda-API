@@ -9,6 +9,8 @@ WORKDIR $APP_DIR
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
+COPY ./models ./models
+
 RUN pip install gdown
 RUN gdown --folder $MODELS_FOLDER_ID -O ./models
 
