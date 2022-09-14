@@ -9,6 +9,7 @@ ner_controller = NerController()
     "/ents",
     description="Get title entities",
     response_model=Entities,
+    response_model_exclude_none=True,
 )
 async def get_entities(title: str):
     if not title:

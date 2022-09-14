@@ -9,6 +9,11 @@ def to_camelCase(string: str):
 
 
 class Model(BaseModel):
+    # Override dict method so "None" and "null" are ignored on response models.
+    # def dict(self, *args, **kwargs):
+    #     kwargs.pop("exclude_none", None)
+    #     return super().dict(*args, exclude_none=True, **kwargs)
+
     class Config:
         alias_generator = to_camelCase
         allow_population_by_field_name = True
