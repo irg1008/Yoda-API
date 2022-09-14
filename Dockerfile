@@ -16,4 +16,4 @@ RUN gdown --folder $MODELS_FOLDER_ID -O ./models
 
 COPY ./src ./src
 
-CMD exec gunicorn -b 0.0.0.0:$PORT -w 1 --threads 8 -k -t 0 --chdir src main:app --preload
+CMD exec gunicorn -b 0.0.0.0:$PORT -w 3 --threads 8 -k -t 120 --chdir src main:app --preload
