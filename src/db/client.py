@@ -7,6 +7,7 @@ from motor.core import AgnosticCollection
 from decouple import config
 
 client = AsyncIOMotorClient(config("MONGO_URI"))
+print("Connected to DB")
 
 
 db: AsyncIOMotorDatabase = client["yoda-db"]
