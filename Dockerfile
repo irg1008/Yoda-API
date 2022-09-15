@@ -1,4 +1,4 @@
-FROM python:3.9.8-slim
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9-slim
 
 ENV PYTHONUNBUFFERED=True
 ARG MODELS_FOLDER_ID="1vm17O0m1M1bvnp_yhHmzgOuVoOTAN1kD"

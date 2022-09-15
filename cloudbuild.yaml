@@ -18,6 +18,5 @@ steps:
       - --allow-unauthenticated
       - --project=$PROJECT_ID
       - --verbosity=debug
-      - --quiet
 
 timeout: 1200s
