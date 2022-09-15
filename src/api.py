@@ -4,5 +4,5 @@ from utils.auth import api_key_dep
 
 
 router = APIRouter(dependencies=[api_key_dep])
-# router.include_router(ner, prefix="/ner", tags=["NER"])
-# router.include_router(fits, prefix="/fits", tags=["FITS"])
+router.include_router(ner, prefix="/ner", tags=["NER"])
+router.include_router(fits, prefix="/fits", tags=["FITS"])
