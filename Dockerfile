@@ -9,8 +9,8 @@ WORKDIR $APP_DIR
 COPY ./requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# COPY ./models ./models
-# RUN gdown --folder $MODELS_FOLDER_ID -O ./models
+COPY ./models ./models
+RUN gdown --folder $MODELS_FOLDER_ID -O ./models
 
 COPY ./src ./src
 
