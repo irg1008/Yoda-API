@@ -14,6 +14,10 @@ tags_metadata = [
         "name": "FITS",
         "description": "First Intergalactic Title Shortener",
     },
+    {
+        "name": "Status",
+        "description": "Information about the current services",
+    },
 ]
 
 

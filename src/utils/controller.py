@@ -2,13 +2,17 @@ from abc import abstractmethod
 
 
 class Controller:
-    loaded = False
+    _loaded = False
 
     def __call__(self):
-        if not self.loaded:
-            self.loaded = True
+        if not self._loaded:
+            self._loaded = True
             self._load()
         return self
+
+    @property
+    def loaded(self):
+        return self._loaded
 
     @abstractmethod
     def _load(
