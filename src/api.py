@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from routes import fits, fits_controller, ner_controller
+from routes import fits, fits_controller
 from utils.auth import api_key_dep
 from utils.models import Model
 
