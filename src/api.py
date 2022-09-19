@@ -23,6 +23,6 @@ class Status(Model):
 )
 def get_status() -> Status:
     return Status(
-        ner_loaded=ner_controller.loaded,
+        # ner_loaded=ner_controller.loaded,
         fits_loaded=fits_controller.loaded,
     )
