@@ -10,4 +10,4 @@ class FitsController(Controller):
 
     def get_completion(self, text: str) -> Completion:
         title = self.service.infer(text)
-        return Completion(title=title)
+        return Completion(title=title, estimated_price=0.0)
