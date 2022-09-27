@@ -23,7 +23,7 @@ class HFClient:
             "inputs": text,
             "options": {
                 "wait_for_model": True,
-                "use_gpu": True,
+                "use_gpu": False,
             },
             "parameters": params,
         }
