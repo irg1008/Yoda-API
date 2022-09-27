@@ -10,4 +10,7 @@ class FitsController(Controller):
 
     def get_completion(self, text: str) -> Completion:
         title = self.service.infer(text)
+        # Remove last period if present
+        if title[-1] == ".":
+            title = title[:-1]
         return Completion(title=title, estimated_price=0.0)
