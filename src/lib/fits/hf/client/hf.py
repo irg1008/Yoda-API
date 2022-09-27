@@ -9,7 +9,7 @@ print(HF_API_KEY)
 YODA_FITS_MODEL = str(config("YODA_FITS_MODEL"))
 
 
-def _query(payload: FITSInferPayload, url: str):
+def query(payload: FITSInferPayload, url: str):
     request_url = f"{HF_BASE_URL}/{url}"
     headers = {"Authorization": f"Bearer {HF_API_KEY}"}
     response = requests.post(request_url, headers=headers, json=payload)
