@@ -16,4 +16,5 @@ async def get_completion(title: str = Depends(check_title)):
         completion = fits_controller.get_completion(title)
         return completion
     except Exception as e:
+        print(f"Error: {e}")
         raise HTTPException(status_code=429, detail="Too many requests to fits model")
