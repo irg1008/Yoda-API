@@ -4,11 +4,12 @@ from decouple import config
 
 HF_BASE_URL = "https://api-inference.huggingface.co/models"
 HF_API_KEY = config("HF_API_KEY")
+print(HF_API_KEY)
 
 YODA_FITS_MODEL = str(config("YODA_FITS_MODEL"))
 
 
-def query(payload: FITSInferPayload, url: str):
+def _query(payload: FITSInferPayload, url: str):
     request_url = f"{HF_BASE_URL}/{url}"
     headers = {"Authorization": f"Bearer {HF_API_KEY}"}
     response = requests.post(request_url, headers=headers, json=payload)
