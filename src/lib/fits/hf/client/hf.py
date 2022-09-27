@@ -26,5 +26,6 @@ class HFClient:
             "parameters": params,
         }
         res: list[FITSResponse] = query(payload, self.fits_url)
+        print(res)
         summary = res[0]["summary_text"]
         return summary
