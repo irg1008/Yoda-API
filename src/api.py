@@ -1,5 +1,7 @@
 from fastapi import APIRouter
 from routes.fits import router as fits, fits_controller
+
+# from routes.ner import router as ner, ner_controller
 from utils.auth import api_key_dep
 from utils.models import Model
 
@@ -24,5 +26,6 @@ class Status(Model):
 def get_status() -> Status:
     return Status(
         # ner_loaded=ner_controller.loaded,
+        ner_loaded=False,
         fits_loaded=fits_controller.loaded,
     )

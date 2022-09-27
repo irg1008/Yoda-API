@@ -9,5 +9,5 @@ class FitsController(Controller):
         print("FITS loaded and ready to go!")
 
     def get_completion(self, text: str) -> Completion:
-        title, price = self.service.infer(text)
-        return Completion(title=title, estimated_price=price)
+        title = self.service.infer(text)
+        return Completion(title=title)
