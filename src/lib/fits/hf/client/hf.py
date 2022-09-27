@@ -4,8 +4,6 @@ from decouple import config
 
 HF_BASE_URL = "https://api-inference.huggingface.co/models"
 HF_API_KEY = config("HF_API_KEY")
-print(HF_API_KEY)
-
 YODA_FITS_MODEL = str(config("YODA_FITS_MODEL"))
 
 
@@ -23,7 +21,10 @@ class HFClient:
     def infer(self, text: str, params: FITSInferParameters) -> str:
         payload: FITSInferPayload = {
             "inputs": text,
-            "options": {"wait_for_model": True},
+            "options": {
+                "wait_for_model": True,
+                "use_gpu": True,
+            },
             "parameters": params,
         }
         res: list[FITSResponse] = query(payload, self.fits_url)
