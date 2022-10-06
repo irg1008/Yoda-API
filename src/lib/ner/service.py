@@ -1,47 +1,39 @@
-from flair.data import Sentence
-from flair.models import SequenceTagger
-from os import path
 from .models import Entities, Entity
 import logging
+
+from lib.hf.client import HFClient
+from lib.hf.types import TokenClassResponse
+from utils.config import ner_model
 
 logging.getLogger("flair").setLevel(logging.ERROR)
 
 
+def parse_response(res: list[TokenClassResponse]) -> Entities:
+    entities: dict[str, Entity] = {}
+
+    last_end = 0
+
+    for r in res:
+        group, value, start, end = r["entity_group"], r["word"], r["start"], r["end"]
+        ents = entities.get(group, [])
+
+        # Append word to previous entity if it's a continuation, if not add new entity
+        if start - 1 == last_end:
+            ents[-1] += f" {value}"
+        else:
+            ents.append(value)
+
+        # Update values
+        entities[group] = ents
+        last_end = end
+
+    return Entities(**entities)
+
+
 class NerService:
-    def __init__(self, model_path: str):
-        self.model = self._load_model(model_path)
-
-    def _load_model(self, model_path: str) -> SequenceTagger:
-        if not path.exists(model_path):
-            raise Exception(f"Model not found at {model_path}")
-        return SequenceTagger.load(model_path)
-
-    def _predict(self, text: str) -> Sentence:
-        sentence = Sentence(text)
-        self.model.predict(sentence)
-        return sentence
-
-    def _get_entities(self, sentence: Sentence) -> Entities:
-        ents: dict[str, Entity] = {}
-
-        for entity in sentence.get_spans("ner"):
-            tag = entity.tag
-            if not tag:
-                continue
-
-            # Creat entry if needed
-            if tag not in ents:
-                ents[tag] = []
-
-            text = entity.text.lower()
-            # Don't allow duplicates
-            if text in ents[tag]:
-                continue
-
-            ents[tag].append(text)
-
-        return Entities(**ents)
+    def __init__(self):
+        self.hf_client = HFClient.for_token_class(ner_model)
 
     def infer(self, text) -> Entities:
-        sentence = self._predict(text)
-        return self._get_entities(sentence)
+        res = self.hf_client.infer(text)
+        return parse_response(res)

@@ -1,13 +1,12 @@
 from fastapi import APIRouter
-from routes.fits import router as fits, fits_controller
 
-# from routes.ner import router as ner, ner_controller
+from routes.fits import router as fits, fits_controller
+from routes.ner import router as ner, ner_controller
 from utils.auth import api_key_dep
 from utils.models import Model
 
-
 router = APIRouter(dependencies=[api_key_dep])
-# router.include_router(ner, prefix="/ner", tags=["NER"])
+router.include_router(ner, prefix="/ner", tags=["NER"])
 router.include_router(fits, prefix="/fits", tags=["FITS"])
 
 
@@ -25,7 +24,7 @@ class Status(Model):
 )
 def get_status() -> Status:
     return Status(
-        # ner_loaded=ner_controller.loaded,
-        ner_loaded=False,
+        # A comment.
+        ner_loaded=ner_controller.loaded,
         fits_loaded=fits_controller.loaded,
     )
