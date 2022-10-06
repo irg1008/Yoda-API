@@ -27,7 +27,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url=None,
     title="Yoda API",
-    description="AI powered API for title summarization and entity extraction",
+    description="AI powered API for ecommerce feed optimization. We create short title from product titles and extract product attributes from product descriptions.",
     version="0.1.0",
     swagger_ui_parameters={
         "docExpansion": "none",
