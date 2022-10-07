@@ -1,24 +1,37 @@
-from .models import Entities, Entity
 import logging
+import re
 
 from lib.hf.client import HFClient
 from lib.hf.types import TokenClassResponse
 from utils.config import ner_model
 
+from .models import Entities, Entity
+
 logging.getLogger("flair").setLevel(logging.ERROR)
+
+
+def is_valid(value):
+    # Filter values with single non-alphanumeric character
+    blacklist = r"^[^a-zA-Z0-9]$"
+    return not re.match(blacklist, value)
 
 
 def parse_response(res: list[TokenClassResponse]) -> Entities:
     entities: dict[str, Entity] = {}
 
     last_end = float("inf")
+    last_group: str = ""
 
     for r in res:
         group, value, start, end = r["entity_group"], r["word"], r["start"], r["end"]
+
+        if not is_valid(value):
+            continue
+
         ents = entities.get(group, [])
 
         # Append word to previous entity if it's a continuation, if not add new entity
-        if start - 1 == last_end:
+        if start - 1 == last_end and group == last_group:
             ents[-1] += f" {value}"
         else:
             ents.append(value)
@@ -26,6 +39,7 @@ def parse_response(res: list[TokenClassResponse]) -> Entities:
         # Update values
         entities[group] = ents
         last_end = end
+        last_group = group
 
     return Entities(**entities)
 
