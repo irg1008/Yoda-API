@@ -11,7 +11,7 @@ logging.getLogger("flair").setLevel(logging.ERROR)
 def parse_response(res: list[TokenClassResponse]) -> Entities:
     entities: dict[str, Entity] = {}
 
-    last_end = -1
+    last_end = float("inf")
 
     for r in res:
         group, value, start, end = r["entity_group"], r["word"], r["start"], r["end"]
