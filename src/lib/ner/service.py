@@ -24,11 +24,10 @@ def parse_response(res: list[TokenClassResponse]) -> Entities:
 
     for r in res:
         group, value, start, end = r["entity_group"], r["word"], r["start"], r["end"]
-
-        if not is_valid(value):
-            continue
-
         ents = entities.get(group, [])
+
+        if not is_valid(value) or value in ents:
+            continue
 
         # Append word to previous entity if it's a continuation, if not add new entity
         if start - 1 == last_end and group == last_group:
