@@ -23,7 +23,12 @@ def parse_response(res: list[TokenClassResponse]) -> Entities:
     last_group: str = ""
 
     for r in res:
-        group, value, start, end = r["entity_group"], r["word"], r["start"], r["end"]
+        group, value, start, end = (
+            r["entity_group"],
+            r["word"].lower(),
+            r["start"],
+            r["end"],
+        )
         ents = entities.get(group, [])
 
         if not is_valid(value):
