@@ -26,7 +26,7 @@ def parse_response(res: list[TokenClassResponse]) -> Entities:
         group, value, start, end = r["entity_group"], r["word"], r["start"], r["end"]
         ents = entities.get(group, [])
 
-        if not is_valid(value) or value in ents:
+        if not is_valid(value):
             continue
 
         # Append word to previous entity if it's a continuation, if not add new entity
@@ -39,6 +39,9 @@ def parse_response(res: list[TokenClassResponse]) -> Entities:
         entities[group] = ents
         last_end = end
         last_group = group
+
+    # Remove duplicated
+    entities = {k: list(set(v)) for k, v in entities.items()}
 
     return Entities(**entities)
 
