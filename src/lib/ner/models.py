@@ -10,4 +10,3 @@ class Entities(Model):
     brand: Optional[Entity] = Field(example=["Apple", "Nike"])
     color: Optional[Entity] = Field(example=["red", "blue"])
     size: Optional[Entity] = Field(example=["small", "large", "43,5"])
-    energy: Optional[Entity] = Field(example=["e--", "a++"])
