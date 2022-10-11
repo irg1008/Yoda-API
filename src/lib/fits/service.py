@@ -9,7 +9,10 @@ class FitsService:
     def infer(self, text: str) -> str:
         res = self.hf_client.infer(
             text,
-            {"max_length": 25},
+            {
+                "max_length": 25,
+                "temperature": 0.1,
+            },
         )
         short_title = res[0]["summary_text"]
         return short_title
