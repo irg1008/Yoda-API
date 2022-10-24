@@ -13,4 +13,4 @@ class FitsController(Controller):
         # Remove last period if present
         if title[-1] == ".":
             title = title[:-1]
-        return Completion(title=title, estimated_price=0.0)
+        return Completion(title=title)
