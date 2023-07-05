@@ -1,0 +1,12 @@
+{
+	"configurations": [
+		{
+			"name": "🐍 Dev",
+			"type": "python",
+			"request": "launch",
+			"program": "src/dev.py",
+			"console": "integratedTerminal",
+			"justMyCode": true
+		}
+	]
+}
